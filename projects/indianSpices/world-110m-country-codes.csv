@@ -1,0 +1,174 @@
+code,id,name,imports,qty
+AF,4,Afghanistan,0,0
+AL,8,Albania,0,0
+DZ,12,Algeria,157,33184
+AO,24,Angola,599,9295
+AQ,10,Antarctica,0,0
+AR,32,Argentina,0,0
+AM,51,Armenia,0,0
+AU,36,Australia,15530,3336
+AT,40,Austria,0,0
+AZ,31,Azerbaijan,0,0
+BS,44,Bahamas,0,0
+BD,50,Bangladesh,1264,410859
+BY,112,Belarus,0,0
+BE,56,Belgium,1033,826
+BZ,84,Belize,0,0
+BJ,204,Benin,0,0
+BT,64,Bhutan,516,6006
+BO,68,Bolivia,0,0
+BA,70,Bosnia and Herzegovina,0,0
+BW,72,Botswana,0,0
+BR,76,Brazil,68,23058
+BN,96,Brunei,277,506
+BG,100,Bulgaria,0,0
+BF,854,Burkina Faso,0,0
+BI,108,Burundi,0,0
+KH,116,Cambodia,0,0
+CM,120,Cameroon,0,0
+CA,124,Canada,16807,3080
+CF,140,Central African Republic,0,0
+TD,148,Chad,0,0
+CL,152,Chile,283,643
+CN,156,China,304,4510
+CO,170,Colombia,84,2057
+CG,178,Republic of Congo,0,0
+CD,180,Democratic Republic of Congo,0,0
+CR,188,Costa Rica,0,0
+,384,Ivory Coast,134,70
+HR,191,Croatia,0,0
+CU,192,Cuba,0,0
+CY,196,Cyprus,0,0
+CZ,203,Czech Republic,119,2239
+DK,208,Denmark,152,608
+DJ,262,Djibouti,0,0
+DO,214,Dominican Republic,0,0
+EC,218,Ecuador,0,0
+EG,818,Egypt,268,7448
+SV,222,El Salvador,0,0
+GQ,226,Equatorial Guinea,0,0
+ER,232,Eritrea,0,0
+EE,233,Estonia,0,0
+ET,231,Ethiopia,0,0
+FK,238,Falkland Islands (Malvinas),0,0
+FJ,242,Fiji,182,117025
+FI,246,Finland,211,22434
+FR,250,France,844,11961
+TF,260,French Southern Territories,0,0
+GA,266,Gabon,0,0
+GM,270,Gambia,0,0
+GE,268,Georgia,112,15632
+DE,276,Germany,2219,4774
+GH,288,Ghana,373,784
+GR,300,Greece,74,9529
+GL,304,Greenland,0,0
+GT,320,Guatemala,0,0
+GN,324,Guinea,0,0
+GW,624,Guinea-Bissau,0,0
+GY,328,Guyana,0,0
+HT,332,Haiti,0,0
+HN,340,Honduras,0,0
+HU,348,Hungary,100,6422
+IS,352,Iceland,0,0
+IN,356,India,224772,1469962
+ID,360,Indonesia,446,40636
+IR,364,Iran,73,3085
+IQ,368,Iraq,0,0
+IE,372,Ireland,679,336
+IL,376,Israel,483,100160
+IT,380,Italy,586,4245
+JM,388,Jamaica,0,0
+JP,392,Japan,1298,44961
+JO,400,Jordan,322,6850
+KZ,398,Kazakhstan,265,4032
+KE,404,Kenya,445,10120
+KP,408,North Korea,0,0
+KR,410,South Korea,292,60147
+KW,414,Kuwait,4480,13105
+KG,417,Kyrgyzstan,173,2471
+LA,418,Lao People's Democratic Republic,0,0
+LV,428,Latvia,161,2542
+LB,422,Lebanon,147,7942
+LS,426,Lesotho,0,0
+LR,430,Liberia,120,124
+LY,434,Libya,0,0
+LT,440,Lithuania,0,0
+LU,442,Luxembourg,0,0
+,807,Macedonia,0,0
+MG,450,Madagascar,112,1329
+MW,454,Malawi,0,0
+MY,458,Malaysia,2124,3965
+ML,466,Mali,0,0
+MR,478,Mauritania,0,0
+MX,484,Mexico,308,563
+MD,498,Moldova,0,0
+MN,496,Mongolia,0,0
+ME,499,Montenegro,0,0
+MA,504,Morocco,58,247
+MZ,508,Mozambique,153,4729
+MM,104,Myanmar,0,0
+NA,516,Namibia,0,0
+NP,524,Nepal,828,155182
+NL,528,Netherlands,1487,12046
+NC,540,New Caledonia,0,0
+NZ,554,New Zealand,3984,6311
+NI,558,Nicaragua,0,0
+NE,562,Niger,0,0
+NG,566,Nigeria,1206,11027
+NO,578,Norway,0,0
+OM,512,Oman,3978,9392
+PK,586,Pakistan,255,37606
+PA,591,Panama,0,0
+PG,598,Papua New Guinea,0,0
+PY,600,Paraguay,0,0
+PE,604,Peru,0,0
+PH,608,Philippines,633,112
+PL,616,Poland,223,18344
+PT,620,Portugal,0,0
+PR,630,Puerto Rico,0,0
+QA,634,Qatar,4507,12403
+RO,642,Romania,0,0
+RU,643,Russia,1459,2838
+RW,646,Rwanda,0,0
+SA,682,Saudi Arabia,7868,23544
+SN,686,Senegal,0,0
+RS,688,Serbia,0,0
+SL,694,Sierra Leone,0,0
+SK,703,Slovakia,0,0
+SI,705,Slovenia,0,0
+SB,90,Solomon Islands,0,0
+SO,706,Somalia,0,0
+ZA,710,South Africa,4522,21742
+SS,728,South Sudan,0,0
+ES,724,Spain,419,124
+LK,144,Sri Lanka,1148,2372
+SD,729,Sudan,0,0
+SR,740,Suriname,0,0
+SZ,748,Swaziland,0,0
+SE,752,Sweden,752,1037
+CH,756,Switzerland,1039,264
+SY,760,Syrian Arab Republic,0,0
+CN,158,China,304,4510
+TJ,762,Tajikistan,0,0
+TZ,834,Tanzania,978,8527
+TH,764,Thailand,466,2746
+TL,626,Timor-Leste,0,0
+TG,768,Togo,143,1397
+TT,780,Trinidad and Tobago,222,285
+TN,788,Tunisia,0,0
+TR,792,Turkey,278,38776
+TM,795,Turkmenistan,0,0
+UG,800,Uganda,1177,4465
+UA,804,Ukraine,254,51418
+AE,784,United Arab Emirates,14271,1816
+GB,826,United Kingdom,12948,12763
+US,840,United States,52635,13764
+UY,858,Uruguay,0,0
+UZ,860,Uzbekistan,0,0
+VU,548,Vanuatu,0,0
+VE,862,Bolivarian Republic of Venezuela,0,0
+VN,704,Vietnam,633,1660
+EH,732,Western Sahara,0,0
+YE,887,Yemen,156,4295
+ZM,894,Zambia,214,1321
+ZW,716,Zimbabwe,0,0

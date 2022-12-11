@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!-- Authors: Steven Lassen and Vamsi Garlapati in collaboration with Professor Suresh Lodha and Jacob Low -->
+<head>
+    <h1 id="title"><bold>Indian Spices: Where Do They Go and Their Impact</bold></h1>
+    <div class="row" id="summary">
+                <div class="col-md-10 col-md-offset-1">
+                    <p style="font-size: 1.2em; line-height: 1.7">
+                        This interactive visualization shows the importance of Indian spices by showing how widespread they are worldwide and how they are essential to global cuisine. How so many popular dishes are dependent on Indian exports. <br/> 
+                        
+                        You can see what spices are exported from India to a given country by clicking on your country of choice. The spice import data is a large sample of all the spices Volza.com has recorded from April 2016 to November 2022. The spices are ordered in terms of quantity imported. A quantity of a spice is a given product of that spice. For example a plastic container full of garam masala would be considered a single quantity. A given quantity does not have a given measurement in grams due to limitations in the import data. Fourtunattly displaying the quantity imported of a given spice suffices in finding the relative popularity of the spice. Especially given how one gram of a spice could be the equivalent of a twenty grams or more of another spice. <br/>
+                        
+                        You have the choice to base the country color bindings off of either quantity imported or the number of spice import shipments from India recieved. An import shipment is simply a batch of products that a country recieved at one point. You also have the option to enable pan & zoom for the map. The panning is controlled by clicking on the map and moving your mouse cursor and the zoom-in is controlled using the scroll wheel.<br/> 
+                        
+                        This visualization also shows the top five most popular Indian dishes in the selected country based on the recorded import data. The dishes are ranked based on a ranking system described below.
+                    </p>
+                </div>
+            </div> 
+    
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+     <button id="colorButton" type="button">Base Color Bindings Off of # of Import Shipments</button>
+     <button id="zoomButton" type="button">Enable Pan & Zoom</button>
+        </div>
+    </div>
+    
+    <!-- Page title -->
+    <title>Indian Spices: Where Do They Go and Their Impact</title>
+    
+</head>
+
+<body></body>
+<!-- div to put the world map inside -->
+<div id="worldMapDiv"></div>
+<!-- Put the  bar chart and most popular dishes graphic in columns so they are spaced out properly when the window is expanded -->
+<div class="row">
+                <div class="col-md-6">
+                    <div id="barChart"></div>
+                
+            </div>
+    
+    <div class="col-md-1">
+                    <div id="popDishes"></div>
+                
+            </div>
+
+
+            
+</div>
+
+<!-- Libraries used -->
+<link rel="stylesheet" type="text/css" href="IndianSpices.css"> 
+<script src="//d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="https://d3js.org/topojson.v2.min.js"></script>
+<script type="text/javascript" src="IndianSpices.js"></script>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+
+<div class="row">
+                <div class="col-md-10">
+                <div class="col-sm-10 col-sm-offset-0">
+                    <h4 class="credits">How the Most Popular Indian Dishes Are Determined</h4>
+                    <p style="font-size: 1.1em;">
+                      Each dish is given a rank when a country is selected. This rank is determined by checking the recipe of each dish with each spice the country has import data for and increasing the rank for each spice found in the recipe. The amount of rank increase per spice is determined by the spice's placement when ordering the spices from most to least quantity imported. If a spice is first on this list then the rank increase is equal to the number of spices imported. Then the next spice in the list would give a rank increase of one minus the number of spices imported. The last spice in the list can only give a rank increase of one. <br/>
+                        
+                     The five dishes with the highest rank are then written to the screen in order from highest to lowest rank.
+                    </p>
+                </div>
+            </div>
+
+</div>
+
+
+ <div class="row">
+                <div class="col-md-5">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <h4 class="credits">Created By</h4>
+                    <p style="font-size: 1.1em;">
+                        Steven Lassen (slassen@ucsc.edu)<br/>
+                        Vamsi Garlapati (vgarlapa@ucsc.edu)<br/>
+                        In collaboration with Professor Suresh Lodha and Jacob Low <br/>
+                    </p>
+                </div>
+            </div>
+
+
+                <div class="col-md-4">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <h4 class="credits">Designed For</h4>
+                    <p style="font-size: 1.1em;">University of California, Santa Cruz <br> CSE 163: Data Programming for Visualization <br> Fall 2022</p>
+                </div>
+</div>
+</div>
+           
+
+<!-- Resources -->                    
+            <div class="row" id="sources">
+                <div class="col-md-3 col-md-offset-1">
+                    <h4 class="sources_header">Files</h4>
+                    <ul class="sources_list"> 
+                        <li><a href="https://github.com/StevenLassen/CSE163FinalProject-IndianSpices">GitHub</a></li> 
+                    </ul>
+                </div>
+
+<!-- Credits -->  
+<div class="col-md-3">
+                    <h4 class="sources_header">Visual Sources</h4>
+                    <ul class="sources_list"> 
+                        <li><a href = 'https://www.kaggle.com/code/jchymdvok/most-frequently-used-indian-spices/notebook'>Most Frequently Used Indian Spices</a></li>
+                        <li><a href = 'https://bl.ocks.org/mbostock/5562380'>California Population Density</a></li>
+                        <li><a href = 'https://sureshlodha.github.io/CMPS165_Spring2018/FinalProjects/TradeWars/index.html'>Concentration of Trade War</a></li>  
+                        <li><a href = 'https://sureshlodha.github.io/CMPS263_Winter2018/CMPS263FinalProjects/EndangeredSpecies/index.html'>Endangered Species Spotlight</a></li>                  
+                    </ul>
+                </div>
+                
+<div class="col-md-3">
+                    <h4 class="sources_header">Code Sources</h4>                
+                    <ul class="sources_list"> 
+                        <li><a href = 'https://observablehq.com/@d3/lets-make-a-bar-chart'>Let’s Make a Bar Chart</a></li>
+                        <li><a href = 'https://gist.github.com/woodyrew/645d0258415db9205da52cb0e049ca28'>Simple d3 v5 tooltips</a></li>
+                        <li><a href = 'https://stackoverflow.com/questions/22853775/how-do-you-bubble-sort-largest-to-smallest'>Bubblesort Largest to Smallest</a></li>                         
+                    </ul>
+                </div>
+                
+<div class="col-md-2">
+                    <h4 class="sources_header">Data Sources</h4>                
+                    <ul class="sources_list"> 
+                        <li><a href = 'https://unpkg.com/world-atlas@1.1.4/world/110m.json'> World Map </a></li>
+                        <li><a href = 'https://github.com/alisle/world-110m-country-codes/blob/master/world-110m-country-codes.json'> Linking Map ids to Countries </a></li> 
+                        <li><a href = 'https://www.volza.com/p/spice/export/export-from-india/'> Indian Spice Import Data </a></li> 
+                        <li><a href = 'https://www.kaggle.com/datasets/kanishk307/6000-indian-food-recipes-dataset'> 6000+ Indian Food Recipes Dataset </a></li> 
+                    </ul>
+                </div>
+
+
+
+

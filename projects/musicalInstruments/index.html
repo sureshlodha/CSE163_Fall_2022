@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+CSE 163
+index.html
+Weblink for Project: https://github.com/bdasgupta027/musical_instruments
+
+-->
+
+<html>
+	<head>
+        <title>Classification of National Instruments</title>
+		<meta charset="utf-8">
+		<title>D3: Setting path fills</title>
+        
+        <!-- D3 V5 -->
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        
+        <script type="text/javascript" src="https://d3js.org/topojson.v1.min.js"></script>
+        <script type="text/javascript" src="https://d3js.org/d3.geo.projection.v0.min.js"></script>
+        
+        <!-- CSS file -->
+	   <link rel="stylesheet" type="text/css" href="music.css">
+        
+        <title><strong> Musical Instruments of the World</strong></title>
+        
+	</head>
+	<body>
+        <h1><center><strong>Classification of National Musical Instruments</strong></center></h1>
+               
+        <br>
+        <div class="info_rect">
+        <p class="synopsis"><b><center> A presentation of various national musical instruments, their classification, and the popularity of each type across different cultures. In some cases, instruments remain in wide use within the nation but in others, their importance is primarily symbolic. Each instrument is also classified by the Hornbostel-Sachs system in which they're categorized based on the sound they produce.</center></b></p>
+        <div class="info-container"> 
+                <img src="chordophone.jpg" class = "images" alt="Chordophone">
+                <p class="description"> <b><u>Chordophones</u></b><br>A chordophone is an instrument whose sounds are made by causing strings to vibrate , either by plucking them or drawing a bow across them and struck as in a piano.</p>
+            
+            
+                <img src="aerophone.jpg" class="images" alt="Aerophone">
+                <p class="description"><b><u>Aerophones</u></b><br> An aerophone is any musical instrument that produces sound primarily by causing a body of air to vibrate without the use of strings or membranes.</p>
+            
+                <img src="idiophone.jpg" class="images" alt="Idiophone">
+                <p class="description"><b><u>Idiophones</u></b><br> An idiophone is an instrument the whole of which vibrates to produce a sound when struck, shaken, or scraped, such as a bell, gong, or rattle.</p>
+            
+                <img src="membranophone.jpg" class="images" alt="Membranophone">
+                <p class="description"><b><u>Membranophones</u></b><br>A membranophone is any of a class of musical instruments in which a stretched membrane vibrates to produce sound.</p>
+
+            
+        </div>
+        
+        
+        </div>
+        
+        <div class="geomap"><center>Map of National Instruments</center></div>
+        <center>
+            <br>
+            <INPUT class = "button" TYPE = "button" VALUE = "Reload Page" onClick="history.go(0)">
+            <INPUT class = "button" TYPE = "button" VALUE = "Sort by Broad Type" onClick="changeBroadColorScheme()">
+            <INPUT class = "button" TYPE = "button" VALUE = "Sort by Minot Type" onClick="changeMinotColorScheme()">
+                </INPUT>
+            <INPUT class = "button" TYPE = "button" VALUE = "Sort by Specific Type" onClick="changeSpecificColorScheme()">
+                </INPUT>
+            </INPUT>
+            </INPUT>
+        </center>
+        <br>
+        <div id="container"><center></center></div>
+         
+        
+        <!-- Javascript file -->
+        <script  src="music.js"> </script>
+ 
+        
+            
+
+        <div class="details"> 
+        <center>
+            <p> CSE 163: Data Programming for Visualization <br><br>
+            Fall 2022 <br><br>
+            Created by: Bhaswati Das Gupta (bdasgupt@ucsc.edu), CJ Guzman(cgdeguzm@ucsc.edu), Hersh Kalsi (hekalsi@ucsc.edu), Brendan Schierloh (bschierl@ucsc.edu) <br><br>
+            In collaboration with Suresh K Lodha, Omkar Ghanekar, and Jacob Low<br><br>
+            <a href = "https://bdasgupta027.github.io/musical_instruments/">Link to Visualization</a><br>
+            <a href = "https://github.com/bdasgupta027/musical_instruments">Github Link</a>
+                </p>
+            
+          
+        
+         
+        <!-- Table -->
+        <table>
+            <tr>
+                <th>Files Submitted</th>
+                <th>Data Sources</th>
+                <th>Visualization Sources</th>
+                <th>Code Sources</th>
+            </tr>
+            <tr>
+                <!-- Files Submitted -->
+                <td>
+                    <!-- Create a list using <ul> and <li> tag -->
+                    <ul>
+                      <li>index.html</li>
+                      <li>music.js</li>
+                      <li>music.css</li>
+                      <li>nation-instruments.csv</li>
+                      <li>countries.geo.json</li>
+                      <li>broad-type.csv</li>
+                      <li>minot-type.csv</li>
+                      <li>specific-type.csv</li>
+                      <li>idiophone.jpg</li>
+                      <li>chordophone.jpg</li>
+                      <li>aerophone.jpg</li>
+                      <li>membranophone.jpg</li>
+                      <li>README.md</li>
+                    </ul>
+                </td>
+                <!-- Data Sources -->
+                <td>
+                     <ul>
+                      <li><a href = "https://en.wikipedia.org/wiki/List_of_national_instruments_(music)">List of national instruments Wikipedia</a></li>
+                    </ul>
+                </td>
+                <td>
+                   <li><a href = "https://sureshlodha.github.io/CSE163_Spring2020/projects/davarapalli/index.html">Map of Gods</a></li> 
+                </td>
+                <!-- Code Sources -->
+                <td>
+                     <ul>
+                      <li><a href="https://github.com/nityadavarapalli/enhancementproject">Previous Project</a></li>
+                      <li><a href="https://bl.ocks.org/mbostock/2206590">Click-To-Zoom</a></li>
+                      <li><a href="https://bl.ocks.org/denisemauldin/1cacff932f3868aad2d7815384a0a6fa">Different Shapes</a></li>
+                      <li><a href="http://bl.ocks.org/d3noob/8150631">Add Links to Objects</a></li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+            </center> 
+                </div>
+	</body>
+</html>

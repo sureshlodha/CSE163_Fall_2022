@@ -1,0 +1,44 @@
+/* CSS Styling */
+
+/* Style title */
+#title {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+}
+
+/* Style summary */
+#summary {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-size: .87em
+}
+
+/*Style the countries */
+.countries {
+  /* All countries we don't have data for are coloured light gray */
+  fill: #D3D3D3;
+  /* Give all the countries a black outline that is one pixel in width */
+  stroke: #000;
+  stroke-width: 1px;
+}
+   
+/* Define how our tooltip looks like */
+div.tooltip {
+  color: white;
+  position: absolute;
+  display:inline;
+  width: 150px;
+  height: 65px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: rgba(0,0,0,.8);
+  border: 2px solid black;
+  pointer-events: none;
+}
+
+/* Style the credits */
+.sources_list {
+  list-style-type: none; 
+  padding: 0px !important;
+  font-size: 1.1em;
+}
