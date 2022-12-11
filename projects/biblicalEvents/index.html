@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style>
+        svg {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="look-nice">
+        <h1 id="title" style = "text-align:center;"><bold>Biblical Events Timeline</bold></h1>
+    </div>
+    <div class="tooltip" style="opacity: 0;"></div>
+    
+    <div id="legend" style="text-align: center;">
+        <p>
+            The Torah (Old Testament) is represented by the blue nodes, and the Bible (New Testament) is represented by the orange nodes.
+            <br><br>
+            <br>You may use your mousepad zoom in and out of the graph, or you can do so by dragging the bar below.
+            <br>You can also click on a node in order to show a detailed description of the event and see an image relating to it.
+            <br>Hovering over a node also gives you additional information such as the specific year of the event, and which book(s) it is mentioned in.
+        </p>
+    </div>
+    
+    
+    <div id="timeline">
+        <div class="center-amogus">
+            <div id="child left">         
+                <img style="float: left;" id="ig" src="easy.png"></img>
+            </div>
+            <div id="child mid">
+                <svg style="float: center;"width="960" height="200"><line x1="40" y1="50" x2="940" y2="50" style="stroke:white;stroke-width:1" /></svg>
+                <div id="imagecontainer" style="max-width: 1000px; display: flex;">
+                    <img id="book-image" style="max-height: 300px;"></img>
+                    <p id="book-text" style="margin-left: 20px;"></p>
+                </div>
+            </div>
+            <div id="child right">         
+                <img style="float: right;" id="img" src="easy.png"></img>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="index.js"></script>
+
+    <div class="row" style="background-color:#8109a9;">
+        <div>
+            <p style="text-align: center;">Created by:<br>
+                Arad Levin (alevin4@ucsc.edu)<br>
+                Ernest Jinian (ejinian@ucsc.edu)<br>
+                Aditya Mahajan (admahaja@ucsc.edu) <br>in collaboration with Suresh K Lodha<br><br>
+                
+                Github Link: https://github.com/ejinian/ejinian.github.io/tree/master/P5-Final-Project-Prototype<br>
+                
+                Designed for: CSE163: Data Visualization, Fall 2022</p>
+        </div>
+        <div class="column" style="text-align: center;">
+            <h2>Files:</h2>
+            <p>index.html</p>
+            <p>index.js</p>
+            <p>styles.css</p>
+            <p>testdata.csv</p>
+        </div>
+        <div class="column" style="text-align: center;">
+            <h2>Data Sources:</h2>
+            <p>The Bible (New Testament)</p>
+            <p>The Torah (Old Testament)</p>
+        </div>
+        <div class="column" style="text-align: center;">
+            <h2>Visualization Sources:</h2>
+            <p><a href="https://code.jquery.com/jquery-3.5.1.min.js" target = "_blank">jQuery</a></p>
+            <p><a href="https://observablehq.com/@d3/focus-context" target = "_blank">Brushable and Zoomable Graph</a></p>
+            <p><a href="https://pastebin.com/cm6ePmnV" target = "_blank">All Image Sources</a></p>
+        </div>
+        <div class="column" style="text-align: center;">
+            <h2>Code Sources:</h2>
+            <p>D3 API Reference</p>
+            <p>Interactive Data Visualization for the Web</p>
+            <p><a href="https://www.w3schools.com/css/css_tooltip.asp" target = "_blank">Tooltip CSS Example - W3Schools</a></p>
+        </div>
+    </div>
+</body>
+</html>
