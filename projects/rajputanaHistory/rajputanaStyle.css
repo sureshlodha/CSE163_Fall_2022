@@ -1,0 +1,180 @@
+/* body style */
+body {
+    font-family: Arial;
+}
+
+/* image styling */
+
+.img {
+    width: 225px;
+    height: 225px;
+}
+
+#indiaMap {
+    position: absolute;
+    top: 400px;
+    left: 975px;
+}
+
+#rajputanaMap {
+    position: absolute;
+    top: 400px;
+    left: 1200px;
+}
+
+/* Footer Styling */
+.authors {
+    line-height: 1;
+    text-align: center;
+}
+
+#footer {
+    position: relative;
+}
+
+.footer {
+    background-color: lightgray;
+    position: relative;
+    right: 0px;
+    font-size: 16px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#sources {
+    font-family: 'Lato', sans-serif;
+}
+
+.credits {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+}
+
+.sources_list {
+    list-style-type: none;
+    padding: 0px !important;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.sources_header {
+    font-weight: bold;
+    text-align: center;
+}
+
+.column {
+    float: left;
+    padding: 0px;
+}
+
+.left,
+.right {
+    width: 25%;
+}
+
+.middle1,
+.middle2 {
+    width: 25%;
+}
+
+/* clips the rects to the grpah so they don't pass the axis  */
+.timeRect {
+    clip-path: url(#clip);
+    /* clip-path: url(#clip2); */
+}
+
+.circle {
+    clip-path: url(#clip);
+}
+
+/* tooltip styling */
+.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 100px;
+    height: 140px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: rgb(209, 162, 255);
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.warTooltip {
+    position: absolute;
+    text-align: center;
+    width: 100px;
+    height: 200px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: rgb(209, 162, 255);
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+/* Dendogram styles */
+.node circle {
+    fill: #fff;
+    stroke: rgb(233, 190, 19);
+    stroke-width: 3px;
+}
+
+.node text {
+    font: 12px sans-serif;
+}
+
+.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 2px;
+}
+
+/* sources styling */
+ul li {
+    font-size: 15px;
+}
+
+/* legend styling */
+#legendDiv {
+    position: absolute;
+    top: 200px;
+    left: 975px;
+}
+
+.sisodia {
+    fill: url(#mainGradient);
+}
+
+.rathore {
+    fill: url(#mainGradient2);
+}
+
+.noDyna {
+    fill: #89ff27;
+}
+
+.stop-left1 {
+    stop-color: #90c2de;
+    /* Indigo */
+}
+
+.stop-right1 {
+    stop-color: #08306b;
+    /* Teal */
+}
+
+.stop-left2 {
+    stop-color: #fb7859;
+    /* Indigo */
+}
+
+.stop-right2 {
+    stop-color: #67000d;
+    /* Teal */
+}
