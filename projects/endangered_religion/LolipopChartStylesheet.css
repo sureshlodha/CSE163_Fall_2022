@@ -1,0 +1,190 @@
+body {
+    background-color: #28282a;
+    padding-left: 1%;
+    padding-top: 1%;
+    padding-bottom: 2%;
+    color: white;
+}
+
+
+.grid line {
+  stroke-opacity: 0.1;
+  shape-rendering: crispEdges;
+  stroke: white;
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 200px;
+  height: 80px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: #d4d4d4;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+color: black;
+}
+
+
+.StartDot {
+    fill: #0077b6;
+}
+.EndDot {
+    fill: #d1001f;
+}
+.CurrentDot {
+    fill: #329542;
+}
+
+
+
+.Central-Africa {
+    stroke: #809bce;
+    shape-rendering: crispEdges;
+}
+.North-Africa {
+    stroke: #809bce;
+    shape-rendering: crispEdges;
+}
+.West-Africa {
+    stroke: #809bce;
+    shape-rendering: crispEdges;
+}
+
+.Central-America {
+    stroke: #44D492;
+    shape-rendering: crispEdges;
+}
+.North-America {
+    stroke: #44D492;
+    shape-rendering: crispEdges;
+}
+.South-America {
+    stroke: #44D492;
+    shape-rendering: crispEdges;
+}
+
+.Central-Asia {
+    stroke: #ac6f82;
+    shape-rendering: crispEdges;
+}
+.East-Asia {
+    stroke: #ac6f82;
+    shape-rendering: crispEdges;
+}
+.South-Asia {
+    stroke: #ac6f82;
+    shape-rendering: crispEdges;
+}
+.West-Asia {
+    stroke: #ac6f82;
+    shape-rendering: crispEdges;
+}
+
+.East-Europe {
+    stroke: #FFA15C;
+    shape-rendering: crispEdges;
+}
+.North-Europe {
+    stroke: #FFA15C;
+    shape-rendering: crispEdges;
+}
+.South-Europe {
+    stroke: #FFA15C;
+    shape-rendering: crispEdges;
+}
+.West-Europe {
+    stroke: #FFA15C;
+    shape-rendering: crispEdges;
+}
+
+.Polynesia {
+    stroke: #FA233E;
+    shape-rendering: crispEdges;
+}
+
+
+.PolytheisticEnd {
+    fill: #bd2b4b;
+}
+
+.PolytheisticFound {
+    fill: #ff5349;
+}
+
+.PolytheisticLine {
+    stroke: #e3534c;
+    shape-rendering: crispEdges;
+}
+
+.MonotheisticFound {
+    fill: #69b3a2;
+}
+
+.MonotheisticEnd {
+    fill: #4c4082;
+}
+
+.MonotheisticLine {
+    stroke: steelblue;
+    shape-rendering: crispEdges;
+}
+
+.AnimismEnd {
+    fill: #541675;
+}
+
+.AnimismFound {
+    fill: #b491c8;
+}
+
+.AnimismLine {
+    stroke: #9c3587;
+    shape-rendering: crispEdges;
+}
+
+.DualisticEnd {
+    fill: #64731e;
+}
+
+.DualisticFound {
+    fill: #dfe667;
+}
+
+.DualisticLine {
+    stroke: #7ea310;
+    shape-rendering: crispEdges;
+}
+
+.NontheisticEnd {
+    fill: #535c5f;
+}
+
+.NontheisticFound {
+    fill: #73939c;
+}
+
+.NontheisticLine {
+    stroke: #8a8a8a;
+    shape-rendering: crispEdges;
+}
+
+.ShamanisticEnd {
+    fill: #fd5602;
+}
+
+.ShamanisticFound {
+    fill: #ffaf42;
+}
+
+.ShamanisticLine {
+    stroke: #e38931;
+    shape-rendering: crispEdges;
+}
+

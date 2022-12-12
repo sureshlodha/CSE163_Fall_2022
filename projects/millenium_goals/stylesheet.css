@@ -1,0 +1,102 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.content {
+    display: flex;
+    flex-direction: row;
+}
+#buttons {
+    display: flex;
+    flex-direction: column;
+}
+button {
+    margin: 5px;
+    padding: 5px;
+    text-align: left;
+}
+text {
+    font: 10px sans-serif;
+}
+.dot {
+    stroke: #000;
+}
+.axis path, .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+.label {
+    fill: #777;
+}
+.country {
+    font: 400 48px"Helvetica Neue";
+    text-anchor:center;
+    fill: #777;
+}
+.year.label {
+    font: 400 120px"Helvetica Neue";
+    fill: #ddd;
+}
+.year.label.active {
+    fill: #aaa;
+}
+.hidden {
+    color: #f00;
+}
+.visible {
+    color: #0f0;
+}
+.overlay {
+    fill: none;/*
+    pointer-events: all;
+    cursor: ew-resize;*/
+}
+.d3-tip {
+    line-height: 1;
+    font-family:  Arial;
+    font-size: 12px;
+    padding: 12px;
+    padding-top: 0px;
+    background: #d0caca;
+    color: #000;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+}
+.column {
+    float: left;
+    width: 25%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.countrysearch{
+    position:relative;
+}
+
+.y-axis-label {
+    text-align: left;
+}
+
+body > p {
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.credits {
+    text-align: center;
+    background-color: lightgray;
+    width: 100%; 
+    margin-top: 5%;
+}
+
+.intro{
+    width: 900px;
+    margin: 0 auto;
+}

@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+	.same {
+		display: none;
+	}
+  
+    #port-change {
+        position: absolute;
+        top: 660px;
+        left: 10px;
+    }
+	
+	div.tooltip {	
+		position: absolute;
+		text-align: center;
+		width: 150px;
+		padding: 2px;				
+		font: 12px sans-serif;		
+		background: lightsteelblue;	
+		border: 0px;		
+		border-radius: 8px;			
+		pointer-events: none;			
+	}
+	
+	.column {
+		float: left;
+		padding: 0px;
+	}
+	.left, .right {
+		width: 25%;
+	}
+	.middle1, .middle2 {
+		width: 25%;
+	}
+	
+	div.author {
+		font-size: 16px;
+    	text-align: center;
+		background-color: #ededed;
+	}
+	
+	.row:after {
+            content: "";
+            display: table;
+            clear: both;
+	}
+	.author {
+		line-height: 1;
+	}
+	#chart {
+		position:absolute;
+	}
+	.line {
+	  fill: none;
+	  stroke: #EF5285;
+	  stroke-width: 2px;
+    z-index: 1;
+	}
+    
+  .line {
+    fill: none;
+    stroke-width: 2.5px;
+  }
+
+  .grid line {
+    stroke: lightgrey;
+    stroke-opacity: 0.7;
+    shape-rendering: crispEdges;
+    z-index: -1;
+  }
+
+  .grid path {
+    stroke-width: 0;
+  }
+
+  #insight {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  
+  .track,
+  .track-inset,
+  .track-overlay {
+    stroke-linecap: round;
+  }
+
+  .track {
+    stroke: #000;
+    stroke-opacity: 0.3;
+    stroke-width: 10px;
+  }
+
+  .track-inset {
+    stroke: #dcdcdc;
+    stroke-width: 8px;
+  }
+
+  .track-overlay {
+    pointer-events: stroke;
+    stroke-width: 50px;
+    stroke: transparent;
+    cursor: crosshair;
+  }
+
+  .handle {
+    fill: #fff;
+    stroke: #000;
+    stroke-opacity: 0.5;
+    stroke-width: 1.25px;
+  }
+  
+  #mainTitle {
+    font-size: 36px;
+    font-family: Arial, sans-serif;
+  }
+  
+  p {
+    font-family: Arial, sans-serif;
+    line-height: 150%;
+  }
+  
+  h3 {
+    font-family: Arial, sans-serif;
+  }
+  
+  h4 {
+    font-family: Arial, sans-serif;
+  }
+  
+  b {
+    font-family: Arial, sans-serif;
+  }
+</style>
+
+<!-- Load d3.js and the geo projection plugin -->
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+<html>
+  <title>Global Shipping Ports</title>
+	<h1 id = "mainTitle", style = "text-align:center"><bold>Global Shipping Ports</bold></h1>
+	
+  <h3 style = "text-align:center"> Insights </h3>
+  
+  <p id = "insight", style = "text-align:center">Shipping ports carry 80% of the world's traded goods, making them one of the most critical components in international commerce and trade politics. Ports will continue to grow in size based on previous years' data and cement Southeast Asia, specifically China, the center of global shipping commerce. While the United States of America is known to be an economic leader, its ports pale compared to other countries, even when excluding Southeast Asia. The surprisingly small ports might be due to the fact that the USA has a higher priority and budget towards military spending, as even commercial ports can be utilized for military purposes.</p>
+  
+  <!--
+  <p id = "insight", style = "text-align:center">This visualization shows the top 100 ports in the world based off of the volume of goods transported. As the amount of goods in the port increases, so does its value in comparision to every other port. This is reflected on the map where, the greater the radius, the greater significance while, the brighter the color, the larger quantity of cargo being transported. </p>
+  -->
+  
+	<button id="port-change" type="button">Switch Port Radius</button>
+
+	<!-- Create an element where the map will take place -->
+	<svg id="portMap" width="600" height="500"></svg>
+  <svg id="portLine" width="625" height="500"></svg>
+  
+  <svg id="slider" width="600" height="150"></svg>
+  
+  <p id = "TEU", style = "text-align:center">*The volume of goods transported is measured in Twenty-Foot Equivalent Units (TEUs) which is a standarized shipping container with internal dimensions of approximately 20'x8'x8'.</p>
+  
+	<div class = 'author'>
+		<h4 style="font-style: italic"><br/>Created by</h4>
+			<p style="position:relative;top:0px;right:0px; font-size:16px; text-align:center;" id="myParagraph">
+				Dmitrius Agoston (dagoston@ucsc.edu)<br> 
+				Benjamin Birnbaum (bbirnbau@ucsc.edu)<br>
+				Anna Yu (antyu@ucsc.edu)<br>
+				in collaboration with Suresh K. Lodha, Jacob Low, and Omkar Ghanekar</p>
+		<p><strong><em>Github Link:</em></strong> <a href="https://github.com/dmitriusagoston/Global-Shipping-Ports">https://github.com/dmitriusagoston/Global-Shipping-Ports/</a></p>
+		<h4 style="font-style: italic"><br/>Designed for</h4>
+			<p id="myParagraph">CSE 163: Data Programming for Visualization, Fall 2022</p>
+		
+		<div class="row">
+          <div class="column left">
+            <b>Files</b>
+            <p>index.html<br>README.md<br>
+				TEUByYear.csv<br>top100port.csv<br>world.json</p>
+          </div>
+          <div class="column middle1">
+            <b>Data Sources</b>
+            <p>
+            	<a href="https://data.humdata.org/dataset/global-ports">Global Port Dataset</a><br>
+				<a href="https://lloydslist.maritimeintelligence.informa.com/one-hundred-container-ports-2020">Top 100 Ports</a><br>
+				<a href="https://bl.ocks.org/piwodlaiwo/3734a1357696dcff203a94012646e932">World Map</a><br>
+        <a href="https://www.maritime.dot.gov/ports/strong-ports/national-port-readiness-network-nprn">NPRN</a><br>
+            </p>
+          </div>
+          <div class="column middle2">
+            <b>Visualization Sources</b>
+			<p>
+				<a href="https://d3-graph-gallery.com/graph/bubblemap_template.html">Bubble Map</a><br>
+				<a href="https://bl.ocks.org/piwodlaiwo/3734a1357696dcff203a94012646e932">World Map</a><br>
+        <a href="https://bl.ocks.org/Simonl07/778eb635c34bd2158706ac72aecbc979">Multiline Chart</a><br>
+        	</p>
+          </div>
+          <div class="column right">
+            <b>Code Sources</b>
+            <p>
+				<a href="https://d3-graph-gallery.com/graph/bubblemap_template.html">Bubble Map</a><br>
+				<a href="https://bl.ocks.org/piwodlaiwo/3734a1357696dcff203a94012646e932">World Map</a><br>
+        <a href="https://bl.ocks.org/Simonl07/778eb635c34bd2158706ac72aecbc979">Multiline Chart</a><br>
+        <a href="https://github.com/scotthmurray/d3-book">d3 Book</a><br>
+        <a href="https://sureshlodha.github.io/CMPS263_Winter2018/CMPS263FinalProjects/ChineseHistory/index.html">Columnar Center Layout</a><br>
+        <a href="https://sureshlodha.github.io/CMPS165_Spring2018/FinalProjects/SocialMovements/index.html">Slider</a><br>
+			</p>
+          </div>
+        </div>
+	</div>
+</html>
+
+<script>
+
+// The svg
+var svg = d3.select("#portMap"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height")
+
+/*
+    svg.call(d3.zoom().on("zoom", function () {
+          svg.attr("transform", d3.event.transform)
+    }))
+    svg.append("g")
+*/
+
+var color = d3.scaleThreshold()
+    .domain([0, 1, 3, 5, 10, 15, 20, 30, 40, 45, 50])
+    .range(["#0d0887","#41049d","#6a00a8","#8f0da4","#b12a90","#cc4778","#e16462","#f2844b","#fca636","#fcce25","#f0f921"]);
+    
+// Map and projection
+var path = d3.geoPath();
+var projection = d3.geoMercator()
+  .scale(110)
+  .center([0,20])
+  .translate([width / 2, (height / 2) + 25]);
+  
+
+d3.queue()
+  .defer(d3.json, "world.json")  // World shape
+  .defer(d3.csv, "top100port.csv") // Position of circles
+  .await(ready);
+	
+//Define Tooltip here
+// create a tooltip
+var div = d3.select("body").append("div")	
+	.attr("class", "tooltip")				
+	.style("opacity", 0);
+    
+
+var beginDate = 0;
+var endDate = 50;
+  
+var bigRadius = true;
+
+function ready(error, dataGeo, data) {
+
+var valueExtent = d3.extent(data, function(d) { return +d.size; })
+
+  // Add a scale for bubble size
+  var size = d3.scaleSqrt()
+    .domain(valueExtent)  // What's in the data
+    .range([ 3, 35])  // Size in pixel
+
+  // Draw the map
+  svg.append("g")
+    .attr("class", "globe")
+    .selectAll("path")
+    .data(dataGeo.features)
+    .enter()
+    .append("path")
+      // draw each country
+      .attr("d", d3.geoPath()
+        .projection(projection)
+      )
+      .attr("fill", "#DDD")
+      .attr("stroke", "#999")
+      .attr("stroke-width", 0.5)
+        var x = d3.scaleSqrt()
+        .domain([0, 50])
+        .rangeRound([340, 590]);
+
+    var leg = svg.append("g")
+        .attr("class", "key")
+        .attr("transform", "translate(0,40)");
+
+
+    leg.selectAll("rect")
+      .data(color.range().map(function(d) {
+          d = color.invertExtent(d);
+          if (d[0] == null) d[0] = x.domain()[0];
+          if (d[1] == null) d[1] = x.domain()[1];
+          return d;
+        }))
+      .enter().append("rect")
+        .attr("height", 8)
+        .attr("x", function(d) { return x(d[0]); })
+        .attr("width", function(d) { return x(d[1]) - x(d[0]); })
+        .attr("fill", function(d) { return color(d[0]); });
+
+    leg.append("text")
+        .attr("class", "caption")
+        .attr("x", x.range()[0])
+        .attr("y", -5)
+        .attr("fill", "#000")
+        .attr("text-anchor", "start")
+        .attr("font-weight", "bold")
+        .text("Volume Transported (Million TEU*)")
+
+    leg.call(d3.axisBottom(x)
+        .tickSize(13)
+        .tickValues(color.domain()))
+      .select(".domain")
+        .remove();
+    
+  // Add circles:
+  svg.selectAll("myCircles")
+    .data(data.sort(function(a,b) { return +b.size - +a.size }).filter(function(d,i){ return i<1000 }))
+    .enter()
+    .append("circle")
+	  .attr("class", "diff")
+      .style("display", "block")
+      .attr("cx", function(d){ return projection([+d.lon, +d.lat])[0] })
+      .attr("cy", function(d){ return projection([+d.lon, +d.lat])[1] })
+      .attr("r", function(d){ return size(+d.size) })
+      .attr("stroke-width", 1)
+      .attr("fill", function(d){ return color(+d.size) })
+      .attr("fill-opacity", .4)
+      .attr("id", function(d) { return "bigC" + d.name.replace(/ /g, "-"); })
+	  .on("mouseover", function(d) { // tooltip
+			div.transition()		
+				.duration(200)		
+				.style("opacity", .9);		
+			div.html(function() { // what tooltip says
+				var str = "Name: " + d.name + " Port <br>";
+				str += "Volume: " + d.size + " Million TEU <br>";
+                str += "Port Type: " + d.type + " Port <br>";
+                str += "Can Support Military: " + d.military;
+				return str;
+			})	
+				.style("left", (d3.event.pageX) + "px") // where tooltip appears
+				.style("top", (d3.event.pageY) + "px");
+			})					
+      .on("mouseout", function(d) { // after mouse leaves
+          div.transition()		
+              .duration(500)		
+              .style("opacity", 0);	
+      })
+      .on("click", function(d) {
+          let line = g.select("#" + d.name.replace(/ /g, "-"));
+          if (line.attr("visibility") == "visible") {
+              line.attr("visibility", "hidden");
+          } else {
+              line.attr("visibility", "visible");
+          }
+      if (d3.select(this).attr("fill") != "#00ffff") {
+          d3.select(this)
+            .attr("fill" , "#00ffff")
+            .attr("fill-opacity", 0.7)
+          d3.select("#smallC" + d.name.replace(/ /g, "-"))
+            .attr("fill" , "#00ffff")
+            .attr("fill-opacity", 0.7)
+        } else {
+          d3.select(this)
+            .attr("fill", function(d){ return color(+d.size) })
+            .attr("fill-opacity", 0.7)
+          d3.select("#smallC" + d.name.replace(/ /g, "-"))
+            .attr("fill", function(d){ return color(+d.size) })
+            .attr("fill-opacity", 0.7)
+        }
+      });
+
+  svg.selectAll("myCircles")
+    .data(data.sort(function(a,b) { return +b.size - +a.size }).filter(function(d,i){ return i<1000 }))
+    .enter()
+    .append("circle")
+	  .attr("class", "same")
+      .attr("cx", function(d){ return projection([+d.lon, +d.lat])[0] })
+      .attr("cy", function(d){ return projection([+d.lon, +d.lat])[1] })
+      .attr("r", function(d){ return size(2) })
+      .attr("stroke-width", 0.3)
+      .attr("fill", function(d){ return color(+d.size) })
+      .attr("fill-opacity", .7)
+      .attr("stroke", "#333")
+      .attr("id", function(d) { return "smallC" + d.name.replace(/ /g, "-"); })
+	  .on("mouseover", function(d) { // tooltip
+			div.transition()		
+				.duration(200)		
+				.style("opacity", .9);		
+			div.html(function() { // what tooltip says
+				var str = "Name: " + d.name + " Port <br>";
+				str += "Volume: " + d.size + " Million TEU <br>";
+                str += "Port Type: " + d.type + " Port <br>";
+                str += "Can Support Military: " + d.military;
+				return str;
+			})	
+				.style("left", (d3.event.pageX) + "px") // where tooltip appears
+				.style("top", (d3.event.pageY) + "px");
+			})					
+		.on("mouseout", function(d) { // after mouse leaves
+			div.transition()		
+				.duration(500)		
+				.style("opacity", 0);	
+		})
+    .on("click", function(d) {
+        let line = g.select("#" + d.name.replace(/ /g, "-"));
+        if (line.attr("visibility") == "visible") {
+            line.attr("visibility", "hidden");
+        } else {
+            line.attr("visibility", "visible");
+        }
+    if (d3.select(this).attr("fill") != "#00ffff") {
+        d3.select(this)
+          .attr("fill" , "#00ffff")
+          .attr("fill-opacity", 0.7)
+        d3.select("#bigC" + d.name.replace(/ /g, "-"))
+          .attr("fill" , "#00ffff")
+          .attr("fill-opacity", 0.7)
+      } else {
+        d3.select(this)
+          .attr("fill", function(d){ return color(+d.size) })
+          .attr("fill-opacity", 0.7)
+        d3.select("#bigC" + d.name.replace(/ /g, "-"))
+          .attr("fill", function(d){ return color(+d.size) })
+          .attr("fill-opacity", 0.7)
+      }
+    });
+}
+    
+d3.select("#port-change").on("click", function(){
+	const check = document.querySelectorAll(".diff");
+	const check2 = document.querySelectorAll(".same");
+	if (check[0].style.display == "block") {
+		bigRadius = false;
+    for (let i = 0; i < check2.length; i++) {
+      if (check[i].style.display == "block") {
+        check2[i].style.display = "block";
+      }
+		}
+    for (let i = 0; i < check.length; i++) {
+      check[i].style.display = "none";
+		}
+		
+	} else {
+		bigRadius = true;
+    for (let i = 0; i < check.length; i++) {
+      if (check2[i].style.display == "block") {
+        check[i].style.display = "block";
+      }
+		}
+		for (let i = 0; i < check2.length; i++) {
+      check2[i].style.display = "none";
+		}
+	}
+});
+  
+
+
+  
+var zoom = d3.zoom()
+      .scaleExtent([1, 8])
+      .on('zoom', function() {
+          
+          svg.selectAll("circle")
+           .attr('transform', d3.event.transform)
+          
+          svg.selectAll('path')
+           .attr('transform', d3.event.transform);
+          
+});
+
+svg.call(zoom);
+</script>
+<script>
+// Multiline -----------------------------------------------------------------
+var svg2 = d3.select("#portLine"),
+    margin = {top: 25, right: 80, bottom: 40, left: 75},
+    width = svg2.attr("width") - margin.left - margin.right,
+    height = svg2.attr("height") - margin.top - margin.bottom,
+    g = svg2.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var parseTime = d3.timeParse("%Y");
+
+// X axis is time based on the width and y axis is linear based on the height
+// The "z" here is used ot give the lines color later
+var x = d3.scaleTime().range([0, width]),
+    y = d3.scaleLinear().range([height, 0]),
+    z = d3.scaleOrdinal(d3.schemeCategory10);
+
+var line = d3.line()
+    .curve(d3.curveLinear)
+    .x(function(d) { return x(d.year); })
+    .y(function(d) { return y(d.TEU); });
+
+// These functions use axis and tick marks to serve as gridlines
+function make_x_gridlines() {		
+    return d3.axisBottom(x)
+        .ticks(10)
+}
+
+function make_y_gridlines() {		
+    return d3.axisLeft(y)
+        .ticks(10)
+}
+
+d3.csv("TEUByYear.csv", type, function(error, data) {
+  if (error) throw error;
+
+  // Creates an array containing the port names (col 1 of data except 1st element) and their values
+  var ports = data.columns.slice(1).map(function(id) {
+    var replacementID = id.replace(/ /g, "-");
+    return {
+      id: replacementID,
+      values: data.map(function(d) {
+        return {year: d.year, TEU: d[id]};
+      })
+    };
+  });
+  
+  // Sets the x domain to [min year, max year]
+  x.domain(d3.extent(data, function(d) { return d.year; }));
+
+  // Sets the y domain to [min BTU, max BTU]
+  y.domain([
+    d3.min(ports, function(c) { return d3.min(c.values, function(d) { return d.TEU; }); }),
+    d3.max(ports, function(c) { return d3.max(c.values, function(d) { return d.TEU; }); })
+  ]);
+  
+  // Sets the z domain to each color the lines will be
+  z.domain(ports.map(function(c) { return c.id; }));
+  
+  // Makes the x gridlines
+  g.append("g")			
+    .attr("class", "grid")
+    .attr("transform", "translate(0," + height + ")")
+    .call(make_x_gridlines()
+        .tickSize(-height)
+        .tickFormat("")
+    )
+
+  // Makes the y gridlines
+  g.append("g")			
+      .attr("class", "grid")
+      .call(make_y_gridlines()
+          .tickSize(-width)
+          .tickFormat("")
+      )
+
+  // Makes the x axis and its title
+  g.append("g")
+      .attr("class", "axis axis--x")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x))
+    .append("text")
+      .attr("x", 250)
+      //.attr("y", -10)
+      .attr("dy", "2.5em")
+      .attr("fill", "#000")
+      .attr("font-size", "15px")
+      .style("text-anchor", "middle")
+      .text("Year");
+
+  // Makes the y axis and its title
+  g.append("g")
+      .attr("class", "axis axis--y")
+      .call(d3.axisLeft(y))
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("x", -225)
+      .attr("dy", "-2.5em")
+      .attr("fill", "#000")
+      .attr("font-size", "15px")
+      .style("text-anchor", "middle")
+      .text("Volume Transported (Million TEU*)");
+
+  // Sets up an appendable object for each port
+  var port = g.selectAll(".port")
+    .data(ports)
+    .enter().append("g")
+      .attr("class", "port")
+      .attr("id", function(d) { return d.id; })
+      .attr("visibility", "hidden")
+      .on("mouseover", function(d) {
+        //let path = port.select('#' + this.id);
+       /*if (path.attr('visibility') == 'hidden') {
+        return;
+       }*/
+        port.selectAll(".line").style("stroke", d => {
+          if (d.id == this.id) {
+              return z(d.id)
+          } else {
+              return '#cacaca'
+          }
+        }).style("stroke-opacity", d => {
+          if (d.id == this.id) {
+              return 1
+          } else {
+              return 0.5
+          }
+        })
+        div.transition()		
+				.duration(200)		
+				.style("opacity", .9);		
+			  div.html(function() { // what tooltip says
+				var str = d.id.replace(/-/g, " ") + " Port";
+				return str;
+			})	
+				.style("left", (d3.event.pageX) + "px") // where tooltip appears
+				.style("top", (d3.event.pageY) + "px")
+        div.transition().duration(0).style("opacity", 0.8);
+      })
+      .on("mouseout", function(d) {
+        port.selectAll('.line').style('stroke', d => {
+          return z(d.id)
+        })
+        .style("stroke-opacity", 1)
+        div.transition()		
+          .duration(500)		
+          .style("opacity", 0);	
+      })
+      .on("click", function(d) {
+        let line = g.select("#" + d.id.replace(/ /g, "-"));
+        if (line.attr("visibility") == "visible") {
+            line.attr("visibility", "hidden");
+            svg.select("#bigC" + d.id.replace(/ /g, "-")).attr("fill", function(d){ return color(+d.size) })
+            .attr("fill-opacity", 0.7)
+            svg.select("#smallC" + d.id.replace(/ /g, "-")).attr("fill", function(d){ return color(+d.size) })
+            .attr("fill-opacity", 0.7)
+        } else {
+            line.attr("visibility", "visible");
+        }
+      });
+    
+  // Creates the lines for each port
+  var path = port.append("path")
+      .attr("class", "line")
+      .attr("d", function(d) { return line(d.values); })
+      // Gives the lines color using z
+      .style("stroke", function(d) { return z(d.id); });
+
+  // totalLength used in animation
+  var totalLength = path.node().getTotalLength();
+
+  // Creates an "ease in" animation for the lines
+  path
+      .attr("stroke-dasharray", totalLength + " " + totalLength)
+      .attr("stroke-dashoffset", totalLength)
+      .transition()
+        .duration(2000)
+        .ease(d3.easeLinear)
+        .attr("stroke-dashoffset", 0);
+
+});
+
+// Sets up the data used to parse 
+function type(d, _, columns) {
+  d.year = parseTime(d.year);
+  for (var i = 1, n = columns.length, c; i < n; ++i) d[c = columns[i]] = +d[c];
+  return d;
+}
+  
+// slider
+var svgSlider = d3.select("#slider")
+    margin = {top: 25, right: 80, bottom: 40, left: 50},
+    width = svgSlider.attr("width") - margin.left - margin.right,
+    slideHeight = svgSlider.attr("height") - margin.top - margin.bottom,
+    gg = svgSlider.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    
+var xSlider = d3.scaleLinear()
+    .domain([0, 50])
+    .range([0, width])
+    .clamp(true);
+
+var slider = svgSlider.append("g")
+    .attr("class", "slider")
+    .attr("transform", "translate(" + margin.left + "," + slideHeight / 2 + ")");
+
+slider.append("line")
+    .attr("class", "track")
+    .attr("x1", xSlider.range()[0])
+    .attr("x2", xSlider.range()[1])
+  .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+    .attr("class", "track-inset")
+  .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+    .attr("class", "track-overlay")
+    .call(d3.drag()
+        .on("start.interrupt", function() { slider.interrupt(); })
+        .on("start drag", function() { update(xSlider.invert(d3.event.x)); }));
+
+slider.insert("g", ".track-overlay")
+    .attr("class", "ticks")
+    .attr("transform", "translate(0," + 18 + ")")
+  .selectAll("text")
+    .data(xSlider.ticks(10))
+    .enter()
+    .append("text")
+    .attr("x", xSlider)
+    .attr("y", 10)
+    .attr("text-anchor", "middle")
+    .text(function(d) { return(d) } );
+  
+  slider.append("text")
+    .attr("x",  230)
+    .attr("y", 15)
+      .attr("dy", "2.5em")
+      .attr("fill", "#000")
+      .attr("font-size", "15px")
+      .style("text-anchor", "middle")
+      .text("Volume Transported (Million TEU*)")
+        .style("font-family", "Arial, sans-serif");
+
+/*
+var handle = slider.insert("circle", ".track-overlay")
+    .attr("class", "handle")
+    .attr("r", 9);
+
+var label = slider.append("text")  
+    .attr("class", "label")
+    .attr("text-anchor", "middle")
+    .text("0")
+    .attr("transform", "translate(0," + (-25) + ")")
+*/
+
+var beginHandle = slider.append("circle")
+    .attr("class", "handle")
+    .attr("r", 9)
+    .style("fill", "white")
+    .call(d3.drag()
+        .on("start.interrupt", function () {
+            slider.interrupt();
+        })
+        .on("start drag", function () {
+            updateBegin(xSlider.invert(d3.event.x));
+        }));
+
+var beginLabel = slider.append("text")
+    .attr("class", "label")
+    .attr("text-anchor", "middle")
+    .text(xSlider.domain()[0])
+    .attr("transform", "translate(0," + (-25) + ")");
+
+var endHandle = slider.append("circle")
+    .attr("class", "handle")
+    .attr("r", 9)
+    .style("fill", "white")
+    .attr("cx", xSlider.range()[1])
+    .call(d3.drag()
+        .on("start.interrupt", function () {
+            slider.interrupt();
+        })
+        .on("start drag", function () {
+            updateEnd(xSlider.invert(d3.event.x));
+        }));
+
+var endLabel = slider.append("text")
+    .attr("class", "label")
+    .attr("text-anchor", "middle")
+    .text(xSlider.domain()[1])
+    .attr("transform", "translate(0," + (-25) + ")")
+    .attr("x", xSlider.range()[1]);
+
+/*
+function update(h) {
+  // update position and text of label according to slider scale
+  handle
+    .attr("cx", xSlider(h))
+  label
+    .attr("x", xSlider(h))
+    .text(String(h));
+
+  // filter data set and redraw plot
+  var newData = dataset.filter(function(d) {
+    return d.date < h;
+  })
+  drawPlot(newData);
+}
+*/
+  
+function updateEnd(h) {
+    endHandle.attr("cx", xSlider(h));
+    endLabel.attr("x", xSlider(h))
+        .text(String(h.toFixed(2)));
+    endDate = h;
+    if (xSlider(h) < beginLabel.attr("x")) {
+        beginLabel.attr("x", xSlider(h));
+        beginHandle.attr("cx", xSlider(h));
+        beginDate = h;
+    }
+    updateMap(h);
+}
+
+function updateBegin(h) {
+    beginHandle.attr("cx", xSlider(h));
+    beginLabel.attr("x", xSlider(h))
+        .text(String(h.toFixed(2)));
+    beginDate = h;
+    if (xSlider(h) > endLabel.attr("x")) {
+        endLabel.attr("x", xSlider(h));
+        endHandle.attr("cx", xSlider(h));
+        endDate = h;
+    }
+    updateMap(h);
+}
+  
+function updateMap(h) {
+  if (bigRadius) {
+    d3.selectAll(".diff")
+        .style("display", changeVisibility);
+  } else {
+    d3.selectAll(".same")
+        .style("display", changeVisibility)
+        //.style("stroke-opacity", changeVisibility);
+  }
+}
+  
+function changeVisibility(d) {
+  if (d.size <= endDate && d.size >= beginDate) {
+    return "block";
+  } else {
+    return "none";
+  }
+}
+</script>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Meta Tag -->
+        <meta charset="utf-8">
+
+        <!-- CSS Stylesheet -->
+        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+        <!-- D3.js Source -->
+        <script type= "text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="https://d3js.org/topojson.v1.min.js"></script>
+
+        <!-- Scripts -->
+        <script type="module" src="shapes.js"></script>
+        <script type="module" src="stars.js"></script>
+        <script src="mainloop.js"></script>
+        <script type="module" src="animate_stars.js"></script>
+        <script type="module" src="globe.js"></script>
+        
+        <script type="module" src="utils.js"></script>
+        <script type="module" src="draw_modules.js"></script>
+        <script type="module" src="animate_modules.js"></script>
+        <script type="module" src="tooltip.js"></script>
+        <script type="module" src="sidebar.js"></script>
+        <script type="module" src="page_control.js"></script>
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>International Space Station&#8482;</h1>
+            <p>The largest modular space station; An astronaut's home base; The pinnacle of human collaboration;<br> 
+            The International Space Station is a multinational project that serves as a microgravity and space research laboratory,
+            where scientific research is conducted in astrobiology, astronomy, meteorology, physics, and more. 
+            The first module of the ISS, the Zarya Control Module, launched on November 20th, 1998, kickstarting the life of the ISS 250 miles above 
+            Earth's orbit. It currently weighs 460 tons, is approximately the size of a football field, and is planned to serve as a home base for 
+            future missions to the Moon, Mars, and other celestial objects.<br>
+            Want to know more? Click the button below :)</p>
+            <button class="begin">BEGIN</button>
+        </div>
+        <div class="back">
+            <button>BACK</button>
+            <div class="prompt">
+            <h1>Click on a Module for more info!</h1>
+            </div>
+        </div>
+        <canvas id="stars"></canvas>
+        <div class="secondary_visualizations">
+          <svg class="globe"></svg>
+          <iframe class="live_feed" src="https://ustream.tv/embed/17074538" title="ISS Live Feed"></iframe>
+          <div class="vis_slider">
+            <h2 class="chartTitle">ISS Live Location</h2>
+            <p>Toggle Feature</p>
+            <label class="switch">
+              <input type="checkbox" state="0">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        <div class="iss_data">Velocity N/A | Altitude N/A</div>
+        </div>
+        <script type="module" src="main.js"></script>
+        <div class="footer">
+            <p>
+                <br>
+                <b>Creators</b><br>
+                <br>
+                Alexander Khodanovich - akhodano@ucsc.edu<br>
+                Kevin Schultz - ksschult@ucsc.edu<br>
+                Hector Torres - htorres5@ucsc.edu<br>
+                <br>
+                In Collaboration with:<br>
+                <br>
+                Suresh K. Lodha (Instructor)<br>
+                Omkar Ghanekar (TA)<br>
+                Jacob Low (TA)<br>
+                <br>
+                <a href="https://github.com/AlexanderKhodanovich/visualization-of-the-iss"><b>Github Link</b></a><br>
+            </p>
+            <div class="row">
+                <br>
+                <div class="column">
+                    <p> 
+                        <b>Files</b><br>
+                        <br>
+                        index.html<br>
+                        stylesheet.css<br>
+                        <br>
+                        main.js<br>
+                        utils.js<br>
+                        animate_modules.js<br>
+                        draw_modules.js<br>
+                        <br>
+                        modules.json<br>
+                        position.json<br>
+                        module_##.png<br>
+                        shapes.js<br>
+                        stars.js<br>
+                        mainloop.js<br>
+                        animate_stars.js<br>
+                        globe.js<br>
+                        <br>
+                        utils.js<br>
+                        draw_modules.js<br>
+                        animate_modules.js<br>
+                        tooltip.js<br>
+                        sidebar.js<br>
+                        page_control.js<br>
+                        <br>
+                    </p>
+                </div>
+                <div class="column">
+                    <p id="footerText"> 
+                        <b>Data Sources</b><br>
+                        <br>
+                        <a href="https://www.nasa.gov/mission_pages/station/structure/elements/space-station-assembly">Nasa Space Station Assembly</a><br>
+                        <a href="https://www.dlr.de/content/en/articles/missions-projects/iss/iss-data-modules.html">Data and Modules</a><br>
+                        <a href="https://www.bbc.com/future/bespoke/space-station/">BBC Living Space Visualization</a><br>
+                        <a href="https://en.wikipedia.org/wiki/International_Space_Station#cite_note-NASA_ISS_Goals-13">ISS Wikipedia Page</a><br>
+                        <br>
+                    </p>
+                </div>
+                <div class="column">
+                    <p id="footerText"> 
+                        <b>Visualization Sources</b><br>
+                        <br>
+                        <a href="https://sureshlodha.github.io/CSE163_Spring2020/projects/leckrone/index.html">Airport Data</a><br>
+                        <a href="https://github.com/IceCreamYou/MainLoop.js">Main Loop Used for the Space Bacground</a><br>
+                        <br>
+                    </p>
+                </div>
+                <div class="column">
+                    <p> 
+                        <b>Code Sources</b><br>
+                        <br>
+                        <a href="https://wheretheiss.at/w/developer">Current Position of the ISS</a><br>
+                        <a href="https://bl.ocks.org/atanumallick/8d18989cd538c72ae1ead1c3b18d7b54">Globe Rotation w/ Markers</a><br>
+                        <br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

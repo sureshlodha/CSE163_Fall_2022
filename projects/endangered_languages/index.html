@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Meta Tag -->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta charset="utf-8">
+    <link href="/favicon.ico" type="image/x-icon" rel="icon" />
+    <link rel="shortcut icon" href="">
+    <title>Endangered Languages</title>
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="endangeredLanguage.css">
+    <!-- D3.js Source -->
+    <script type="text/javascript" src="http://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+</head>
+
+<body>
+    <h1 style="text-align:center; color:steelblue">
+        <bold> Endangered Languages</bold>
+    </h1>
+
+    <p>
+        Human language is a uniquely diverse and complex form of culture, but this unique catalog of human experience shrinks everyday from sources as hostile as outright genocide to the apathetic motions of urbanization. Often times people take for granted the linguistic diversity that the world holds and could potentially lose over the next one hundred years, by learning about the inherent heterogeneity of human languages and their closeness to extinction in just the languages that have been recorded, we can observe the dire need for conservation in both documentation and active preservation. Without intervention many of these languages will be lost forever.
+    </p>
+
+
+
+    <script type="text/javascript" src="endangeredLanguage.js"></script>
+    <div margin="auto" id="slider"></div>
+    <div margin="auto" id="rangeLabel"></div>
+
+
+    <div class="note" id="note" style="position:relative;right:0px; font-size:16px; text-align:center;" id="myParagraph">
+        <div class='author'>
+            <h4 style="font-weight: bold"><br />Created by</h4>
+            <p style="position:relative;top:0px;right:0px; font-size:16px; text-align:center;" id="myParagraph">
+                Jinsu Hwang (jhwang39@ucsc.edu, convenientMall),<br> Nicholas Szwed (nszwed@ucsc.edu, NickSzd)
+            </p>
+            <p>Github Hosted Visualization Link: <a href="https://convenientmall.github.io/Endangered_languages/">https://convenientmall.github.io/Endangered_languages</a></p>
+            <p>Github Link:<a href="https://github.com/ConvenientMall/Endangered_languages">https://github.com/ConvenientMall/Endangered_languages</a></p>
+            <h4 style="font-weight: bold"><br />Designed for</h4>
+            <p id="myParagraph">CSE163: Data Visualization, Fall 2022</p>
+        </div>
+
+
+        <div class="row">
+            <div class="column left">
+                <b>Files Submitted</b>
+                <p>index.html<br>endangeredLanguage.css<br>endangeredLanguage.js<br>database_file.csv<br>world.topojson</p>
+            </div>
+            <div class="column middle1">
+                <b>Data Sources</b>
+                <p>
+                    <a data-brackets-id='62' href="https://www.endangeredlanguages.com/userquery/">Endagered Lanuages Database</a><br>
+                </p>
+            </div>
+            <div class="column middle2">
+                <b>Visualization sources</b>
+                <p id="myParagraph">
+                    <a data-brackets-id='62' href="https://devdocs.io/d3~5/">D3 v5 Documentation</a>
+                    <br />
+                    <a data-brackets-id='62' href="https://bl.ocks.org/d3noob/1a96af738c89b88723eb63456beb6510">add remove nodes</a>
+                    <br />
+                    <a data-brackets-id='62' href="https://www.d3indepth.com/force-layout/">Basic Forces</a>
+                    <br />
+                    <a data-brackets-id='62' href="https://observablehq.com/@d3/force-directed-tree">Force directed graph</a>
+                    <br />
+                    <a data-brackets-id='62' href="https://observablehq.com/@t829702/map-pan-zoom-with-cities-d3-v5"> Zoom and Pan Map</a>
+                </p>
+            </div>
+            <div class="column right">
+                <b>Code Sources</b>
+                <p>
+                    <a data-brackets-id='62' href="https://bl.ocks.org/johnwalley/e1d256b81e51da68f7feb632a53c3518">Slider</a>
+                    <br />
+                    <a data-brackets-id='62' href="https://bl.ocks.org/mbostock/5562380">Map/Legend</a>
+                    <br />
+                    <a data-brackets-id='62' href="https://bl.ocks.org/d3noob/2cb9427ae371eee76804945146b066b3">Changing data with slider</a>
+                    <br />
+                    <a data-brackets-id='62' href="http://benheb.github.io/d3.slider/">Types of Sliders</a>
+                    <br />
+                    <a data-brackets-id='62' href="https://docs.mapbox.com/mapbox-gl-js/example/timeline-animation/">Adding and Removign data with sliders</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
